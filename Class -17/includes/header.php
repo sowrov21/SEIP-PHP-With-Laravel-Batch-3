@@ -2,28 +2,9 @@
 <html lang="en">
 <head>
 
-    <title>Document</title>
+    <title>HTML Form with PHP</title>
 
-    <style>
-        .header {
-            background-color: green;
-            color: white;
-            padding:10px;
-        }
-        .container {
-            height: 500px;
-            color: black;
-        }
-        .footer {
-
-            background-color: green;
-            color: white;
-            padding:10px;
-        }
-        .input {
-            padding:50px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="header">
@@ -33,4 +14,3 @@
 
     </div>
 </body>
-</html>
