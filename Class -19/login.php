@@ -1,0 +1,39 @@
+
+
+
+        <?php session_start();?>
+        <?php include ('./includes/header.php');?>
+
+
+      
+
+        
+        <div class="container">
+        <form action="./function/login_check.php" method="post">
+
+        <fieldset>
+                <legend>Login Form</legend>
+
+            <div>
+                <label for="username">Email</label>
+                <input type="email" name="email" id="email" value="" placeholder="Enter email">
+               
+            </div>
+
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" value="" placeholder="Enter Password">
+            </div>
+
+            <input type="submit" value="Login"></br>
+
+             <span style="color:red;"><?php  if (isset($_SESSION['message'])){echo $_SESSION['message'];}?></span>
+
+        </fieldset>
+
+
+
+        </form>
+        </div>
+
+       <?php include ('./includes/footer.php');?>
