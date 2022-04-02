@@ -27,13 +27,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             if($user)
             {
-                   session_start();
+                   //session_start();
                    $_SESSION['email']=$email;
                    header("Location:../dashboard.php");
 
             }else{
 
                 $_SESSION['message'] = "Please enter correct info";
+                 header("Location:../login.php");
 
             }
 

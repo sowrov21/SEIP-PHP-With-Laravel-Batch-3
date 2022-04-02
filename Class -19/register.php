@@ -7,20 +7,20 @@
         <fieldset>
                 <legend>Registration Form</legend>
 
-            <div>
+            <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name" value="" placeholder="Enter Name">
+                <input type="text" name="name" id="name" value="" placeholder="Enter Name" class="form-control">
             </div>
-            <div>
+            <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" value="" placeholder="Enter email">
+                <input type="email" name="email" id="email" value="" placeholder="Enter email" class="form-control">
             </div>
-            <div>
+            <div class="form-group">
                 <label for="firstName">Password</label>
-                <input type="password" name="password" id="password" value="" placeholder="Enter Password">
+                <input type="password" name="password" id="password" value="" placeholder="Enter Password" class="form-control">
             </div>
-
-            <input type="submit" value="Register">
+              <br />
+            <input type="submit" value="Register" class="btn btn-primary form-control">
 
         </fieldset>
 

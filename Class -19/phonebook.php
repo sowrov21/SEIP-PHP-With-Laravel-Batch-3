@@ -29,10 +29,9 @@
 
   }
 
-  else  if(isset($_POST['clear'])){
+  else  if(isset($_REQUEST['clear'])){
 
-    session_destroy();
-  }
+      }
   
   
   
