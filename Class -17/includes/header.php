@@ -1,3 +1,9 @@
+<?php
+
+$message = "";
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -5,3 +5,4 @@ $password =$_GET['password'];
 
 echo $id."<br>";
 echo $password;
+

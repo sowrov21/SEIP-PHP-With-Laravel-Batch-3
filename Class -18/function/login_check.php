@@ -1,5 +1,5 @@
 
-<?php include ('../db.php');?>
+<?php include_once '../db.php';?>
 <?php
 
 
@@ -29,26 +29,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     // echo $user['name'] . '<br>';
 
                  if($username == $user['name'] && $password== $user['password']){
-                            echo "Login Successfully!";
+                            header("Location:../dashboard.php");
 
-
-                                echo <<< DEMO
-
-                            <div style="border:2px solid black; padding: 20px;">
-
-
-                                <h2>Welcome $username</h2>
-                            
-                            
-                            </div>
-
-
-                            DEMO;
+                         
                                 }
                                 else{
 
-                                    echo "Credentials Invalid";
-                                    header("Location:../index.php");
+                                    $message ="Credentials Invalid";
+                                   header("Location: ../login.php");
                                 }
                         }
 
@@ -63,3 +51,5 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 else{
 
 }
+
+?>
