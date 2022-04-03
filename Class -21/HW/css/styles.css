@@ -1,0 +1,15 @@
+        .header {
+            background-color: green;
+            color: white;
+            padding:10px;
+        }
+        .container {
+            height: 500px;
+            color: black;
+        }
+        .footer {
+
+            background-color: green;
+            color: white;
+            padding:10px;
+        }
