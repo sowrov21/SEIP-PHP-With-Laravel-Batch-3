@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Seip\\": "src/"
+    }
+  },
+  "require": {
+    "mpdf/mpdf": "^8.0"
+  }
+}
