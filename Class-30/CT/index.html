@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+            .alert {
+            padding: 20px;
+            background-color: #f44336;
+            color: white;
+            }
+
+            .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            }
+
+            .closebtn:hover {
+            color: black;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <input type="button" id="decrement" value="-" />
+    <input type="text" name="quantity" value="0" size="1" id="number" />
+    <input type="button" id="increment" value="+" /><br><br>
+
+    <span id="error"></span>
+    <div class="alert">
+        <span class="closebtn" style="display:block;">&times;</span> 
+        <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+        var decrement = document.getElementById('decrement');
+        var increment = document.getElementById('increment');
+        var error = document.getElementById('error');  
+        
+        decrement.addEventListener('click', decrementValue);
+        increment.addEventListener('click', incrementValue);
+
+        function incrementValue()
+        { 
+             error.innerHTML ="";
+            var value = document.getElementById('number').value;
+                value++;
+             document.getElementById('number').value = value;
+        }
+        function decrementValue()
+        {
+             error.innerHTML ="";
+            var value = document.getElementById('number').value;
+            if(value>0){
+                value--;
+                    document.getElementById('number').value = value;
+            }
+            else{
+                //alert('Value cannot be negative');
+                 error.innerHTML ="Value cannot be negative";
+
+            }
+
+        }
+</script>
+
+</body>
+</html>
