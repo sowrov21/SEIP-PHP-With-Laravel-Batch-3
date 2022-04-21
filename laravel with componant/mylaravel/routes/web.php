@@ -18,6 +18,11 @@ Route::get('/', function () {
 });
 
 
+Route::get('/product/index', function () {
+    return view('backend.product.index');
+});
+
+
 
 
 
