@@ -22,6 +22,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Color
                 </a>
+               <a class="nav-link" href="{{route('brand.index')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                    Brand
+                </a>
 
 
                 {{-- <div class="sb-sidenav-menu-heading">Interface</div>

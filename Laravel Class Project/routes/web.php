@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
@@ -18,8 +19,13 @@ Route::get('/admin', function(){
 Route::prefix('product')->group(function(){
     Route::get('/', [ProductController::class, 'index'])->name('product.index');
     Route::get('/create', [ProductController::class, 'create'])->name('product.create');
-    Route::post('/store', [ProductController::class, 'store'])->name('product.store');
-});
+    Route::get('/show/{id}', [ProductController::class, 'show'])->name('product.show');
+    Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+
+    Route::get('/delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
+
+    Route::post('/update/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::post('/store', [ProductController::class, 'store'])->name('product.store');});
 
 
 Route::prefix('category')->group(function(){
@@ -34,6 +40,11 @@ Route::prefix('color')->group(function(){
     Route::get('/', [ColorController::class, 'index'])->name('color.index');
     Route::get('/create', [ColorController::class, 'create'])->name('color.create');
     Route::post('/store', [ColorController::class, 'store'])->name('color.store');
+   
+});
+
+Route::prefix('brand')->group(function(){
+    Route::get('/', [BrandController::class, 'index'])->name('brand.index');
    
 });
 
