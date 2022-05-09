@@ -81,22 +81,39 @@
                     <span class="text-danger"> {{ $message }}</span>
                   @enderror
                 </div>
+				
+				
+				<div class="row">
+				
+					<div class="col-6">
+					
+					    <div class="mb-3">
+						    <label for="img">Image</label>
+						    <input type="file" id="img"  class="form-control" name="image" accept="image/*">
+						</div>
+					
+					</div>
+					
+					<div class="col-6">
+					
+					     <div>
+							   @if(file_exists(storage_path().'/app/public/products/'.$product->image ) && (!is_null($product->image)))
+
+								<img src="{{ asset('storage/products/'.$product->image) }}" height="250" width="250">
+
+								@else
+								<img src="{{ asset('img/default.png') }}" height="250" width="250"/>
+								@endif
+                         </div>
+					
+					</div>
+				
+				</div>
 
                 
-                <div class="mb-3">
-                  <label for="img">Image</label>
-                  <input type="file" id="img"  class="form-control" name="image" accept="image/*">
-                </div>
+    
                 
-                <div>
-                   @if(file_exists(storage_path().'/app/public/products/'.$product->image ) && (!is_null($product->image)))
 
-                    <img src="{{ asset('storage/products/'.$product->image) }}" height="50" width="50">
-
-                    @else
-                    <img src="{{ asset('img/default.png') }}" height="250" width="250"/>
-                     @endif
-                </div>
 
                 <div class="mt-3">
                  <button type="submit" class="btn btn-primary"> Update</button>

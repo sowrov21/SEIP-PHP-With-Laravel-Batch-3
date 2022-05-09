@@ -4,6 +4,7 @@
                    <div class="card-header">
            Product Trash List 
         <a class="btn btn-sm btn-success float-end"  href="{{ route('product.create') }}">Add Product</a>
+		<a  href="{{ route('product.index') }}" class="btn btn-sm btn-primary float-end">Product List</a>
         </div>
         @if (session('message'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
