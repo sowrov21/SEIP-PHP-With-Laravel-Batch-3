@@ -78,6 +78,7 @@
 //   //  echo __DIR__;
 
 //     echo __CLASS__;
+class Student{
 
     public function index() {
         //all data show in table;
@@ -92,3 +93,6 @@
     public function delete() {
         //delete data;
     }
+
+}
+
