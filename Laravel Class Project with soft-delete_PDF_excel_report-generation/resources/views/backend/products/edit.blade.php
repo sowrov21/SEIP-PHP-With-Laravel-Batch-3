@@ -9,7 +9,7 @@
 
         <div class="card-body">
 
-            <form action="{{ route('product.update', $product->id ) }}" method="post">
+            <form action="{{ route('product.update', $product->id ) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                   <label for="name" class="form-label">Name</label>
@@ -27,6 +27,18 @@
                   @enderror
 
                 </div>
+
+               <div class="mb-3">
+                 <label for="category" class="form-label">Category</label>
+                   <select name="category" id="category"  class="form-control" >
+                     <option value="{{$product->category}}" selected>{{$product->category}}</option> </option>
+                      <option value="Food">Food</option>
+                      <option value="Grocery">Grocery</option>
+                      <option value="Cosmetics">Cosmetics</option>
+
+                   </select>
+              </div>
+
                 <div class="mb-3">
                   <label for="price" class="form-label">Price</label>
                   <input 
@@ -61,16 +73,36 @@
                 </div>
 
 
+                <div class="mb-3">
+                  <label for="description" class="form-label">Description</label>
+                  <textarea class="text form-control"  id="description" name="description">{{ $product->description ?? 'No description' }}</textarea>
+
+                  @error('description')
+                    <span class="text-danger"> {{ $message }}</span>
+                  @enderror
+                </div>
+
                 
                 <div class="mb-3">
                   <label for="img">Image</label>
-                  <input type="file" id="img"  class="form-control" name="img" accept="image/*">
+                  <input type="file" id="img"  class="form-control" name="image" accept="image/*">
+                </div>
+                
+                <div>
+                   @if(file_exists(storage_path().'/app/public/products/'.$product->image ) && (!is_null($product->image)))
+
+                    <img src="{{ asset('storage/products/'.$product->image) }}" height="50" width="50">
+
+                    @else
+                    <img src="{{ asset('img/default.png') }}" height="250" width="250"/>
+                     @endif
                 </div>
 
-                <button type="submit" class="btn btn-primary"> Update</button>
+                <div class="mt-3">
+                 <button type="submit" class="btn btn-primary"> Update</button>
                  <a class="btn btn-danger" href="{{ route('product.index') }}" >  Cancel</a> 
-
-                  
+                </div>
+ 
               </form>
         </div>
 

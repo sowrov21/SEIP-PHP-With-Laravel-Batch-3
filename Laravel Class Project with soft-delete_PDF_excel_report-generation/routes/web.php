@@ -26,6 +26,10 @@ Route::prefix('product')->group(function(){
 
     Route::post('/update/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+
+     Route::get('/trashlist', [ProductController::class, 'trashList'])->name('product.trashlist');
+    Route::get('/restore/{id}', [ProductController::class, 'restore'])->name('product.restore');
+    Route::delete('/permanent_delete/{id}', [ProductController::class, 'delete'])->name('product.permanent_delete');
 });
 
 

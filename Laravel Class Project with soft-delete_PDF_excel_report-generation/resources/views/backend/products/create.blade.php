@@ -9,7 +9,7 @@
 
         <div class="card-body">
 
-            <form action="{{ route('product.store') }}" method="post">
+            <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                   <label for="name" class="form-label">Name</label>
@@ -27,6 +27,18 @@
                   @enderror
 
                 </div>
+
+
+               <div class="mb-3">
+                 <label for="category" class="form-label">Category</label>
+                   <select name="category" id="category"  class="form-control" >
+                    <option value="Food">Food</option>
+                    <option value="Grocery">Grocery</option>
+                    <option value="Cosmetics">Cosmetics</option>
+                   </select>
+              </div>
+
+
                 <div class="mb-3">
                   <label for="price" class="form-label">Price</label>
                   <input 
@@ -61,10 +73,19 @@
                 </div>
 
 
+                <div class="mb-3">
+                  <label for="description" class="form-label">Description</label>
+                  <textarea class="text form-control"  id="description" name="description"></textarea>
+
+                  @error('description')
+                    <span class="text-danger"> {{ $message }}</span>
+                  @enderror
+                </div>
+
                 
                 <div class="mb-3">
                   <label for="img">Image</label>
-                  <input type="file" id="img"  class="form-control" name="img" accept="image/*">
+                  <input type="file" id="img"  class="form-control" name="image" accept="image/*">
                 </div>
 
                 <button type="submit" class="btn btn-primary"> Save</button>

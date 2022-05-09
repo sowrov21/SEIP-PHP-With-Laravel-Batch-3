@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 use Exception;
 
+use Carbon\Carbon;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Database\QueryException;
+
 
 class ProductController extends Controller
 {
@@ -21,26 +25,36 @@ class ProductController extends Controller
 
     public function store(Request $request){
 
+        //dd($request);
        $request->validate([
            'name' => 'required',   
+           'category' => 'required',   
            'price' => 'required', 
            'unit' => 'required', 
+           'description' => 'required'
                 
          ]);
-       
-       try{
-        Product::create([
-            'name' => $request->name ?? null,
-            'price' => $request->price ?? null,
-            'unit' => $request->unit ?? null
-        ]);
 
 
-        return redirect()->route('product.index')->with('message', 'successfully Created!');
+         try{
 
-       }catch(Exception $e){
-            dd($e->getMessage());
+        $data = $request->except(['_token']);
+        if($request->hasFile('image')) {
+
+            //dd('ok');
+           
+           $data['image'] = $this->uploadImage($request->image, $request->name);
+
+        }
+       // dd($data);
+        Product::create($data);
+        return redirect()->route('product.index')->withMessage('successful Created!');
+
+       }catch(QueryException $e){
+           return redirect()->route('product.create')->withErrors($e->getMessage());
        }
+       
+
     }
 
     
@@ -67,20 +81,39 @@ class ProductController extends Controller
 
          $request->validate([
            'name' => 'required',   
+           'category' => 'required',   
            'price' => 'required', 
            'unit' => 'required', 
+           'description' => 'required'
                 
          ]);
   
 
-        Product::where('id', $id)->update([
-            'name' => $request->name ,
-            'price' => $request->price ,
-            'unit' => $request->unit
-        ]);
+         
+         try{
 
-        return redirect()->route('product.index')->withMessage('successfully Updated!');
+          $data = $request->except(['_token']);
+
+        if($request->hasFile('image')) {
+           
+            $product = Product::where('id', $id)->first();
+            
+            $this->unlink($product->image);
+
+            $data['image'] = $this->uploadImage($request->image, $request->name);
  
+        }
+
+        Product::where('id', $id)->update($data);
+
+
+        return redirect()->route('product.index')->withMessage('successful Updated!');
+ 
+
+       }catch(QueryException $e){
+           return redirect()->route('product.create')->withErrors($e->getMessage());
+       }
+
 
      }
 
@@ -91,6 +124,68 @@ class ProductController extends Controller
          return redirect()->route('product.index')->with('success', 'Product deleted!');   
     
     }
+
+        // image upload  function 
+
+
+    private function uploadImage($file, $title)
+    {
+        
+        //dd($file);
+        $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
+
+        $file_name = $timestamp .'-'.$title. '.' . $file->getClientOriginalExtension();
+        
+
+        $pathToUpload = storage_path().'/app/public/products/';  // image  upload application save korbo
+
+        if(!is_dir($pathToUpload)) {
+
+            mkdir($pathToUpload, 0755, true);
+
+        }
+
+      Image::make($file)->resize(634,792)->save($pathToUpload.$file_name);
+
+        return $file_name;
+    }
+
+        private function unlink($file)
+    {
+        $pathToUpload = storage_path().'/app/public/products/';
+        if ($file != '' && file_exists($pathToUpload. $file)) {
+            @unlink($pathToUpload. $file);
+        }
+    }
+
+
+        // soft delete  methods 
+
+    public function trashList(){
+        
+        $products = Product::onlyTrashed()->get();
+        return view('backend.products.trashlist', compact('products'));
+
+    }
+
+    public function restore($id){
+       
+        $product = Product::onlyTrashed()->where('id', $id)->first();
+        $product->restore();
+        return redirect()->back()->withMessage('successful restored !');
+    }
+
+    public function delete($id){
+        
+        $product = Product::onlyTrashed()->where('id', $id)->first();
+        $product->forceDelete();
+        return redirect()->route('product.trashlist')->withMessage('Deleted from Database !');    
+
+
+    }
+
+
+   
 
 
 

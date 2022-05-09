@@ -1,9 +1,8 @@
 <x-layout.master>
     <div class="container">
-       <div class="card-header">
-           Product List 
-
-        <a class="btn btn-sm btn-warning float-end"  href="{{ route('product.trashlist') }}">Trash list</a>
+        <div class="card">
+                   <div class="card-header">
+           Product Trash List 
         <a class="btn btn-sm btn-success float-end"  href="{{ route('product.create') }}">Add Product</a>
         </div>
         @if (session('message'))
@@ -47,57 +46,35 @@
                         <td class="text-center">{{ $product->price }}</td>
                         <td class="text-center">{{ $product->unit }}</td>
 
-                        <td class="text-center">
-                            <a href="{{ route('product.show', $product->id) }}" class="btn btn-sm btn-primary">Show</a>
+                                                    <td class="text-center d-flex justify-content-center">
+     
+     
+                                 <a  href="{{ route('product.restore', $product->id) }}" class="btn btn-sm btn-warning">Restore</a>
+     
+     
 
-                            <a  href="{{ route('product.edit',  $product->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <form action="{{ route('product.permanent_delete', $product->id) }}" method="post" >
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are You Sure Want To Delete?')">Permanent Delete</button>
+                                </form>
 
-
-                            <a href="{{  route('product.delete',  $product->id) }}" class="btn btn-sm btn-danger">Delete</a>
-
-                        </td> 
+                             </td>     
                             
                     </tr>
                 @endforeach  
             </tbody>
         </table>
        </div>
+            
+        </div>
     </div>
 
 
-     <script type="text/javascript">
-        function deleteFunc(id) {
-            event.preventDefault();
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: false
-            })
-            swalWithBootstrapButtons.fire({
-                title: 'Are you sure?',
-                text: "Data will be Deleted permanently ..!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, Delete!',
-                cancelButtonText: 'No, cancel!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    event.preventDefault();
-                    document.getElementById('delete-form-' + id).submit();
-                    toastr.success("Deleted successfully..!", "Sucess");
-                } else if (
-                    /* Read more about handling dismissals below */
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
-                    swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        'Your Data is Safe :)',
-                        'error'
-                }
-            })
+     <style>
+
+        .card {
+            background-color: rgb(237, 198, 198) !important;
         }
-    </script>
+    </style>
 </x-layout.master>
