@@ -2,9 +2,12 @@
     <div class="container">
        <div class="card-header">
            Product List 
-
+        
+        <a class="btn btn-sm btn-primary float-end"  href="{{ route('product.pdf') }}">PDF</a>
+        <a class="btn btn-sm btn-dark float-end"  href="{{ route('product.html') }}">HTML</a>
         <a class="btn btn-sm btn-warning float-end"  href="{{ route('product.trashlist') }}">Trash list</a>
         <a class="btn btn-sm btn-success float-end"  href="{{ route('product.create') }}">Add Product</a>
+
         </div>
         @if (session('message'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">

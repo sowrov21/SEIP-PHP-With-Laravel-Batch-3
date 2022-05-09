@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\BrandController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PdfController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
@@ -61,6 +62,11 @@ Route::prefix('brand')->group(function(){
     Route::post('/store', [BrandController::class, 'store'])->name('brand.store');
    
 });
+
+// pdf 
+
+Route::get('/product_pdf', [PdfController::class, 'productPdf'])->name('product.pdf');
+Route::get('/product_html', [PdfController::class, 'productHtml'])->name('product.html');
 
 
 
