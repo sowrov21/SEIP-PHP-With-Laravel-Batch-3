@@ -110,11 +110,6 @@
 				
 				</div>
 
-                
-    
-                
-
-
                 <div class="mt-3">
                  <button type="submit" class="btn btn-primary"> Update</button>
                  <a class="btn btn-danger" href="{{ route('product.index') }}" >  Cancel</a> 
@@ -125,4 +120,10 @@
 
 
     </div>
+
+    <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
+    
+    <script>
+      CKEDITOR.replace( 'description' );
+    </script>
 </x-layout.master>
