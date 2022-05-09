@@ -9,21 +9,21 @@
                 </a>
 
                 <a class="nav-link" href="{{ route('product.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-sitemap"></i></div>
                     Product
                 </a>
 
                 <a class="nav-link" href="{{ route('category.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-brands fa-stack-overflow"></i></div>
                     Category
                 </a>
 
                <a class="nav-link" href="{{route('color.index')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-palette"></i></div>
                     Color
                 </a>
                <a class="nav-link" href="{{route('brand.index')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-copyright"></i></div>
                     Brand
                 </a>
 
