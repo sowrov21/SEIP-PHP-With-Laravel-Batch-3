@@ -2,14 +2,14 @@
     <div class="container">
 
 
-        <div class="card-header">Edit Brand
+        <div class="card-header">Create Color
 
-            <a  href="{{ route('brand.index') }}" class="btn btn-sm btn-primary float-end">Brand List</a>
+            <a  href="{{ route('color.index') }}" class="btn btn-sm btn-primary float-end">Color List</a>
         </div>
 
         <div class="card-body">
 
-            <form action="{{ route('brand.update', $brand->id ) }}" method="post">
+            <form action="{{ route('color.store') }}" method="post">
                 @csrf
                 <div class="mb-3">
                   <label for="name" class="form-label">Name</label>
@@ -18,7 +18,7 @@
                     class="form-control" 
                     name="name" 
                     id="name" 
-                    value="{{ $brand->name ?? ' ' }}" 
+                    value="{{ old('name') }}" 
 
                     />
 
@@ -26,10 +26,9 @@
                     <span class="text-danger">{{ $message }}</span>
                   @enderror
 
-                </div>
-               <br />
-                <button type="submit" class="btn btn-primary mt-3"> Update</button>
-                 <a class="btn btn-danger mt-3" href="{{ route('brand.index') }}" >  Cancel</a> 
+                <br/>
+                <button type="submit" class="btn btn-primary mt-3"> Save</button>
+                 <a class="btn btn-danger mt-3" href="{{ route('color.index') }}" > Cancel</a> 
 
                   
               </form>
