@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Color;
-use Exception;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class ColorController extends Controller
@@ -23,13 +23,13 @@ class ColorController extends Controller
        
        try{
         Color::create([
-            'name' => $request->title ?? null
+            'name' => $request->name ?? null
         ]);
 
 
         return redirect()->route('color.index')->with('message', 'successful Created!');
 
-       }catch(Exception $e){
+       }catch(QueryException $e){
             dd($e->getMessage());
        }
     }
