@@ -15,25 +15,25 @@ class PdfController extends Controller
        $html = view('backend.products.productPdf', compact('products'))->render();
 
        //dd($html);
-       // $mpdf = new \Mpdf\Mpdf();
+       $mpdf = new \Mpdf\Mpdf();
         // default watermark angle is 45°
-        $mpdf = new \Mpdf\Mpdf(['mode' => 'c', 'watermarkAngle' => 45]);
+        // $mpdf = new \Mpdf\Mpdf(['mode' => 'c', 'watermarkAngle' => 45]);
 
-        $mpdf->SetDisplayMode('fullpage');
+        // $mpdf->SetDisplayMode('fullpage');
 
-        $mpdf->SetWatermarkText('Confidential');
-        $mpdf->watermark_font = 'DejaVuSansCondensed';
-        $mpdf->showWatermarkText = true;
+        // $mpdf->SetWatermarkText('Confidential');
+        // $mpdf->watermark_font = 'DejaVuSansCondensed';
+        // $mpdf->showWatermarkText = true;
      //    $mpdf->addPage("L");
         $mpdf->WriteHTML($html);
         
-        $mpdf->AddPage(); //Use to add new pdf page
-        $mpdf->SetWatermarkImage(public_path().'/assets/tiger.wmf', 1, '', array(10,10));
-        $mpdf->showWatermarkImage = true;
-        $mpdf->AddPage(); //Use to add new pdf page
-        $mpdf->SetWatermarkImage(public_path().'/assets/tiger.wmf', 0.15, 'F');
-        $mpdf->WriteHTML('<h2 style="text-align: center;">Using a Watermark Image as Background</h2>');
-        //$mpdf->WriteHTML($html);
+        // $mpdf->AddPage(); //Use to add new pdf page
+        // $mpdf->SetWatermarkImage(public_path().'/assets/tiger.wmf', 1, '', array(10,10));
+        // $mpdf->showWatermarkImage = true;
+        // $mpdf->AddPage(); //Use to add new pdf page
+        // $mpdf->SetWatermarkImage(public_path().'/assets/tiger.wmf', 0.15, 'F');
+        // $mpdf->WriteHTML('<h2 style="text-align: center;">Using a Watermark Image as Background</h2>');
+        // //$mpdf->WriteHTML($html);
         $mpdf->Output($fileName,'I');
 
     }
